@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Okulus Hub: {{ post.title }}{% endblock %}
+
+{% block content %}
+	<h2 class='title'>{{ post.title }}</h2>
+	<hr>
+	<div class="post-text-mono">
+		{{ post.html|safe }}
+	</div>
+	<hr>
+	<p style='text-align: right;'>{{ post.date }}</p>
+{% endblock %}

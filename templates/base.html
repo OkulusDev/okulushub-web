@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/vars.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/blocks.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/tags.css') }}">
+</head>
+<body>
+	<div class="header">
+			<a href="{{ url_for('index') }}" class="page_title">Okulus Hub</a>
+			<a href="{{ url_for('posts') }}" class="link">Статьи</a>
+			<a href="{{ url_for('download') }}" class="link">Софт</a>
+			<link rel="stylesheet" href="{{ url_for('pygments_css') }}">
+		</div>
+	<div class="wrapper">
+		<div class="content">
+			{% block content %}
+			{% endblock%}
+		</div>
+	</div>
+	<div class="footer">
+			<h4 style='text-align: center;'>ALL RIGHTS REVERSED (C) 2023</h4>
+		</div>
+</body>
+</html>

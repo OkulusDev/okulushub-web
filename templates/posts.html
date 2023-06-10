@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Okulus Hub: Статьи{% endblock %}
+
+{% block content %}
+	<h2 class='title'>Статьи</h2>
+	<hr>
+	<p>Фильтр по тегам:</p>
+	<div class="tag"><a href="/posts">Все посты</a></div>
+	{% for tag in tags %}
+		<div class="tag"><a href="/posts?tag={{ tag }}">{{ tag }}</a></div>
+	{% endfor %}
+	<br>
+	{% for post in posts %}
+		{% if tag == "all" %}
+			<div class="post">
+				<div class="post-title">
+					<a href="{{ url_for('post', name=post.path.replace('articles/', '')) }}" class="post-link">{{ post.title }}</a>
+				</div>
+				<div class="post-body">
+					<p>{{ post.description }}</p>
+				</div>
+				<div class="post-footer">
+					<div class="tag"><a href="/posts?tag={{ post.tag }}">{{ post.tag }}</a></div>
+					<div class="date">Дата: {{ post.date }}</div>
+				</div>
+			</div>
+		{% else %}
+			{% if post.tag == tag %}
+				<div class="post">
+				<div class="post-title">
+					<a href="{{ url_for('post', name=post.path.replace('articles/', '')) }}" class="post-link">{{ post.title }}</a>
+				</div>
+				<div class="post-body">
+					<p>{{ post.description }}</p>
+				</div>
+				<div class="post-footer">
+					<div class="tag"><a href="/posts?tag={{ post.tag }}">{{ post.tag }}</a></div>
+					<div class="date">Дата: {{ post.date }}</div>
+				</div>
+			</div>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+{% endblock %}

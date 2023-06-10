@@ -1,0 +1,69 @@
+.page_title {
+	text-decoration: none;
+	font-size: 30px;
+	color: var(--red);
+	transition: all .2s;
+	margin-right: 15px;
+}
+
+.page_title:hover {
+	color: var(--brightred);
+}
+
+.post-link {
+	text-decoration: none;
+	transition: all .2s;
+	color: var(--green);
+	font-size: 25px;
+}
+
+.post-link:hover {
+	color: var(--brightgreen);
+}
+
+.title {
+	font-size: 23px;
+	text-align: center;
+}
+
+.link {
+	font-size: 20px;
+	text-decoration: none;
+	margin-right: 10px;
+	color: var(--brightblue);
+	transition: all .2s;
+	opacity: 0.8;
+}
+
+.link:hover {
+	opacity: 1;
+	color: var(--blue);
+}
+
+.tag {
+	display: inline-block;
+	color: var(--black);
+	padding: 5px;
+	background: var(--yellow);
+	margin: 3px;
+	transition: .2s;
+	text-decoration: none;
+}
+
+.tag:hover {
+	background: var(--brightyellow);
+}
+
+.tag a {
+	text-decoration: none;
+	color: var(--black);
+}
+
+.date {
+	display: inline-block;
+	color: var(--black);
+	border-radius: 10px;
+	padding: 5px;
+	background: var(--brightcyan);
+	margin: 3px;
+}

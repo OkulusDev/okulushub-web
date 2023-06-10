@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "Iosevka";
+    font-style: normal;
+    font-weight: 400;
+
+    src: local("Iosevka"),
+        url("/fonts/IosevkaRegular.ttf");
+}
+
+:root {
+    --background: #131313;
+    --foreground: #dcdde1;
+	--black: #101010;
+    --red: #cc241d;
+    --green: #10893e;
+    --yellow: #ffb900;
+    --blue: #05A1F7;
+    --magenta: #bf2544;
+    --cyan: #05A1F7;
+    --white: #b8b8b8;
+    --gray: #909090;
+    --brightred: #ff4343;
+    --brightgreen: #00cc6a;
+    --brightyellow: #ff8c00;
+    --brightblue: #0099bc;
+    --brightmagenta: #b146c2;
+    --brightcyan: #00b7c3;
+}
