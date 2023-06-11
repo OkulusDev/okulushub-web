@@ -68,6 +68,15 @@
 	margin: 3px;
 }
 
+.views {
+	display: inline-block;
+	color: var(--black);
+	border-radius: 10px;
+	padding: 5px;
+	background: var(--brightcyan);
+	margin: 3px;
+}
+
 .choiced-tag {
 	display: inline-block;
 	color: var(--black);

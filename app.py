@@ -1,8 +1,10 @@
 # -*- coding:utf-8 -*-
 import sys
+import os
 from flask import Flask, url_for, render_template, request
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_frozen import Freezer
+from jsonactions import write, get_json
 
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
@@ -16,13 +18,24 @@ app = Flask(__name__)
 flatpages = FlatPages(app)
 freezer = Freezer(app)
 app.config.from_object(__name__)
+files = os.listdir('content/articles')
+
+views = get_json('views.json')
+print('write')
+	# views = {}
+	# for file in files:
+	# 	views[file.replace(FLATPAGES_EXTENSION, '')] = {
+	# 		'ip': None,
+	# 		'views': 0
+	# 	}
+	# write('views.json', 'w', views)
 
 
 @app.route('/')
 def index():
 	posts = [p for p in flatpages if p.path.startswith(ARTICLE_DIR)]
 	posts.sort(key=lambda item: item['date'], reverse=True)
-	return render_template('index.html', posts=posts)
+	return render_template('index.html', posts=posts, views=views)
 
 
 @app.route('/manuals')
@@ -50,11 +63,24 @@ def pygments_css():
 	return pygments_style_defs('monokai'), 200, {'Content-Type': 'text/css'}
 
 
-@app.route('/posts/<name>')
+@app.route('/posts/<name>', methods=['GET'])
 def post(name):
 	path = '{}/{}'.format(ARTICLE_DIR, name)
 	post = flatpages.get_or_404(path)
-	return render_template('post.html', post=post)
+	name = name.replace(FLATPAGES_EXTENSION, '')
+
+	views = get_json('views.json')
+	
+	if views[name]['ip'] is None or views[name]['ip'] != request.remote_addr:
+		views[name]['views'] += 1
+		views_count = views[name]['views']
+		views[name]['ip'] = request.remote_addr
+	else:
+		views_count = views[name]['views']
+
+	write('views.json', 'w', views)
+
+	return render_template('post.html', post=post, view=views_count)
 
 
 @app.route('/download')
@@ -64,7 +90,12 @@ def download():
 
 @app.errorhandler(400)
 def bad_request(e):
-	return render_template('400.1')
+	return render_template('errorhandler.html', error=e, code=400)
+
+
+@app.errorhandler(404)
+def bad_request(e):
+	return render_template('errorhandler.html', error=e, code=404)
 
 
 if __name__ == '__main__':
