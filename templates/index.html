@@ -6,4 +6,19 @@
 	<h2 class='title'>Добро пожаловать</h2>
 	<hr>
 	<p>Okulus Hub - это сайт, посвященный информационной безопасности, IT и другим интересным вещам. Администрация всегда выпускает свежие статьи.</p>
+	<h2 class="title">Последняя статья на сайте</h2>
+	<div class="post">
+		<div class="post-title">
+			<a href="{{ url_for('post', name=posts[0].path.replace('articles/', '')) }}" class="post-link">{{ posts[0].title }}</a>
+		</div>
+		<div class="post-body">
+			<p>{{ posts[0].description }}</p>
+		</div>
+		<div class="post-footer">
+			{% for exist_tag in posts[0].tag.split(',') %}
+				<div class="tag"><a href="/posts?tag={{ exist_tag }}">{{ exist_tag }}</a></div>
+			{% endfor %}
+			<div class="date">Дата: {{ posts[0].date }}</div>
+		</div>
+	</div>
 {% endblock %}

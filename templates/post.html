@@ -9,5 +9,8 @@
 		{{ post.html|safe }}
 	</div>
 	<hr>
-	<p style='text-align: right;'>{{ post.date }}</p>
+	{% for exist_tag in post.tag.split(',') %}
+		<div class="tag"><a href="/posts?tag={{ exist_tag }}">{{ exist_tag }}</a></div>
+	{% endfor %}
+	<div class="date">Дата: {{ post.date }}</div>
 {% endblock %}

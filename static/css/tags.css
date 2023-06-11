@@ -67,3 +67,33 @@
 	background: var(--brightcyan);
 	margin: 3px;
 }
+
+.choiced-tag {
+	display: inline-block;
+	color: var(--black);
+	padding: 5px;
+	background: var(--brightyellow);
+	margin: 3px;
+	transition: .2s;
+	text-decoration: none;
+}
+
+.choiced-tag:hover {
+	background: var(--yellow);
+}
+
+.choiced-tag a {
+	text-decoration: none;
+	color: var(--black);
+}
+
+.post-text-mono a {
+	color: var(--red);
+	transition: .2s;
+	text-decoration: none;
+}
+
+.post-text-mono a:hover {
+	text-decoration: underline;
+	color: var(--brightred);
+}

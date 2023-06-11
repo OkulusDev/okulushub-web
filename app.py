@@ -20,12 +20,19 @@ app.config.from_object(__name__)
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	posts = [p for p in flatpages if p.path.startswith(ARTICLE_DIR)]
+	posts.sort(key=lambda item: item['date'], reverse=True)
+	return render_template('index.html', posts=posts)
+
+
+@app.route('/manuals')
+def manuals():
+	return render_template('manuals.html')
 
 
 @app.route("/posts")
 def posts():
-	tags = ['новости сайта', 'безопасность']
+	tags = ['новости сайта', 'безопасность', 'анонимность', 'сеть']
 	posts = [p for p in flatpages if p.path.startswith(ARTICLE_DIR)]
 	tag = request.args.get('tag')
 	if tag not in tags:
@@ -53,6 +60,11 @@ def post(name):
 @app.route('/download')
 def download():
 	return render_template('download.html')
+
+
+@app.errorhandler(400)
+def bad_request(e):
+	return render_template('400.1')
 
 
 if __name__ == '__main__':

@@ -7,12 +7,15 @@
 	<hr>
 	<p>Фильтр по тегам:</p>
 	<div class="tag"><a href="/posts">Все посты</a></div>
-	{% for tag in tags %}
-		<div class="tag"><a href="/posts?tag={{ tag }}">{{ tag }}</a></div>
+	{% for exists_tag in tags %}
+		{% if tag == exists_tag %}
+			<div class="choiced-tag"><a href="/posts?tag={{ exists_tag }}">{{ exists_tag }}</a></div>
+		{% else %}
+			<div class="tag"><a href="/posts?tag={{ exists_tag }}">{{ exists_tag }}</a></div>
+		{% endif %}
 	{% endfor %}
-	<br>
 	{% for post in posts %}
-		{% if tag == "all" %}
+		{% if tag == 'all' %}
 			<div class="post">
 				<div class="post-title">
 					<a href="{{ url_for('post', name=post.path.replace('articles/', '')) }}" class="post-link">{{ post.title }}</a>
@@ -21,13 +24,15 @@
 					<p>{{ post.description }}</p>
 				</div>
 				<div class="post-footer">
-					<div class="tag"><a href="/posts?tag={{ post.tag }}">{{ post.tag }}</a></div>
+					{% for exist_tag in post.tag.split(',') %}
+						<div class="tag"><a href="/posts?tag={{ exist_tag }}">{{ exist_tag }}</a></div>
+					{% endfor %}
 					<div class="date">Дата: {{ post.date }}</div>
 				</div>
 			</div>
 		{% else %}
-			{% if post.tag == tag %}
-				<div class="post">
+			{% if tag in post.tag.split(',') %}
+			<div class="post">
 				<div class="post-title">
 					<a href="{{ url_for('post', name=post.path.replace('articles/', '')) }}" class="post-link">{{ post.title }}</a>
 				</div>
@@ -35,7 +40,9 @@
 					<p>{{ post.description }}</p>
 				</div>
 				<div class="post-footer">
-					<div class="tag"><a href="/posts?tag={{ post.tag }}">{{ post.tag }}</a></div>
+					{% for exist_tag in post.tag.split(',') %}
+						<div class="tag"><a href="/posts?tag={{ exist_tag }}">{{ exist_tag }}</a></div>
+					{% endfor %}
 					<div class="date">Дата: {{ post.date }}</div>
 				</div>
 			</div>
