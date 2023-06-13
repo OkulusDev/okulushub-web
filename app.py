@@ -4,9 +4,8 @@ import os
 from flask import Flask, url_for, render_template, request
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_frozen import Freezer
-from jsonactions import write, get_json
 
-DEBUG = True
+DEBUG = False
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'content'
@@ -18,24 +17,13 @@ app = Flask(__name__)
 flatpages = FlatPages(app)
 freezer = Freezer(app)
 app.config.from_object(__name__)
-files = os.listdir('content/articles')
-
-views = get_json('views.json')
-print('write')
-	# views = {}
-	# for file in files:
-	# 	views[file.replace(FLATPAGES_EXTENSION, '')] = {
-	# 		'ip': None,
-	# 		'views': 0
-	# 	}
-	# write('views.json', 'w', views)
 
 
 @app.route('/')
 def index():
 	posts = [p for p in flatpages if p.path.startswith(ARTICLE_DIR)]
 	posts.sort(key=lambda item: item['date'], reverse=True)
-	return render_template('index.html', posts=posts, views=views)
+	return render_template('index.html', posts=posts)
 
 
 @app.route('/manuals')
@@ -45,7 +33,8 @@ def manuals():
 
 @app.route("/posts")
 def posts():
-	tags = ['новости сайта', 'безопасность', 'анонимность', 'сеть']
+	tags = ['новости сайта', 'безопасность', 'анонимность', 'сеть', 'троян', 
+			'вымогатель', 'андроид', 'информация']
 	posts = [p for p in flatpages if p.path.startswith(ARTICLE_DIR)]
 	tag = request.args.get('tag')
 	if tag not in tags:
@@ -69,18 +58,7 @@ def post(name):
 	post = flatpages.get_or_404(path)
 	name = name.replace(FLATPAGES_EXTENSION, '')
 
-	views = get_json('views.json')
-	
-	if views[name]['ip'] is None or views[name]['ip'] != request.remote_addr:
-		views[name]['views'] += 1
-		views_count = views[name]['views']
-		views[name]['ip'] = request.remote_addr
-	else:
-		views_count = views[name]['views']
-
-	write('views.json', 'w', views)
-
-	return render_template('post.html', post=post, view=views_count)
+	return render_template('post.html', post=post)
 
 
 @app.route('/download')
@@ -96,6 +74,11 @@ def bad_request(e):
 @app.errorhandler(404)
 def bad_request(e):
 	return render_template('errorhandler.html', error=e, code=404)
+
+
+@app.errorhandler(500)
+def bad_request(e):
+	return render_template('errorhandler.html', error=e, code=500)
 
 
 if __name__ == '__main__':
