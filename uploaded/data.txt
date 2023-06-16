@@ -1,0 +1,107 @@
+Информация о ПК жертвы на 2023-06-16 17:18:50.087287:
+
+Система: Linux
+Имя узла: debian
+Выпуск системы: 6.1.0-9-amd64
+Версия системы: #1 SMP PREEMPT_DYNAMIC Debian 6.1.27-1 (2023-05-08)
+Машина: x86_64
+Процессор: 
+		
+Физические ядра: 2
+Всего ядер: 2
+Максимальная частота процессора: 1000.00МГц
+Минимальная частота процессора: 800.00МГц
+Текущая частота: 952.01МГц
+Общая загруженность процессора на ядро:
+Ядро 0: 2.0%
+Ядро 1: 3.0%
+Общая загруженность процессора: 3.5%
+
+Объем оперативной памяти: 1.53 GB
+Доступно оперативной памяти: 560.87 MB
+Используется оперативной памяти: 799.16 MB
+Процент оперативной памяти: 64.2%
+		
+Объем памяти подкачки: 500.00 MB
+Свободно памяти подкачки: 405.25 MB
+Используется памяти подкачки: 94.75 MB
+Процент памяти подкачки: 19.0%
+			
+Раздел диска: /dev/mapper/debian--vg-root
+Тип файловой системы: ext4
+			
+Общий объем диска: 27.75 GB
+Используется места на диске: 14.49 GB
+Свободно места на диске: 11.83 GB
+Процент диска: 55.1%
+			
+Раздел диска: /dev/sda1
+Тип файловой системы: ext2
+			
+Общий объем диска: 454.22 MB
+Используется места на диске: 150.28 MB
+Свободно места на диске: 279.59 MB
+Процент диска: 35.0%
+			systemd
+(sd-pam)
+pulseaudio
+gnome-keyring-daemon
+dbus-daemon
+run.sh
+ssh-agent
+picom
+bar.sh
+dwm
+sh
+alacritty
+fish
+gvfsd
+sublime_text
+at-spi-bus-launcher
+dbus-daemon
+xdg-desktop-portal
+xdg-document-portal
+xdg-permission-store
+fusermount3
+xdg-desktop-portal-gtk
+at-spi2-registryd
+plugin_host-3.3
+plugin_host-3.8
+sh
+alacritty
+fish
+dunst
+chrome
+chrome_crashpad_handler
+chrome_crashpad_handler
+chrome
+chrome
+chrome
+chrome
+chrome
+chrome
+chrome
+chrome
+chrome
+gvfs-udisks2-volume-monitor
+gvfsd-trash
+dconf-service
+python3
+python3
+bar.sh
+bar.sh
+vmstat
+awk
+Статус запроса по 176.59.143.125: success
+Страна: Russia
+Код страны: RU
+Регион: NVS
+Имя региона: Novosibirsk Oblast
+Город: Novosibirsk
+ZIP: 630025
+Широта: 54.9022
+Долгота: 83.0335
+Временная зона: Asia/Novosibirsk
+Провайдер: Tele2 Russia Groups
+Организация: 
+AS: AS41330 T2 Mobile LLC

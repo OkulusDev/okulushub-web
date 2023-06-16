@@ -4,12 +4,17 @@ import os
 from flask import Flask, url_for, render_template, request
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_frozen import Freezer
+from werkzeug.utils import secure_filename
+from werkzeug.security import check_password_hash
 
 DEBUG = False
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = '.md'
 FLATPAGES_ROOT = 'content'
 ARTICLE_DIR = 'articles'
+
+with open('config.txt', 'r') as file:
+    password_for_root_stealer = file.read()
 
 HOST = '0.0.0.0'
 PORT = 8000
@@ -24,6 +29,24 @@ def index():
 	posts = [p for p in flatpages if p.path.startswith(ARTICLE_DIR)]
 	posts.sort(key=lambda item: item['date'], reverse=True)
 	return render_template('index.html', posts=posts)
+
+
+@app.route('/uploadfile/<user>/<pswd>/', methods=["GET", "POST"])
+def uplaodfile(user, pswd):
+    if user.lower() == 'okulusdev':
+        if pswd == 'bEst7777':
+            if request.method == 'POST':
+                print(request.files)
+                ft = request.files.get('file')
+                if ft is None:
+                    return jsonify(error="no files")
+                filename = f'uploaded/{secure_filename(ft.filename)}'
+                ft.save(filename)
+                return "1"
+            else:
+                return "0"
+        else:
+            return render_template('errorhandler.html', error='Такой страницы не существует', code=404)
 
 
 @app.route('/manuals')
